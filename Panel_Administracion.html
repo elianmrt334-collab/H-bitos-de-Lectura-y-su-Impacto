@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración UVG</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        uvg: {
+                            green: '#166534',
+                            navy: '#1e293b',
+                            light: '#f0fdf4',
+                            accent: '#22c55e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        h1, h2, h3, h4, .font-outfit { font-family: 'Outfit', sans-serif; }
+        .glass-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .hidden-section { display: none; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- ==========================================
+         SECCIÓN 1: LOGIN
+         ========================================== -->
+    <div id="login-section" class="flex-grow flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl p-8 max-w-md w-full border-t-8 border-uvg-green relative overflow-hidden">
+            <!-- Decoración de fondo -->
+            <i class="fa-solid fa-lock absolute -right-6 -top-6 text-[120px] text-slate-50 opacity-50 pointer-events-none"></i>
+            
+            <div class="relative z-10">
+                <div class="text-center mb-8">
+                    <!-- Logo UVG Mini -->
+                    <div class="inline-flex flex-col items-center justify-center border-4 border-uvg-navy px-3 py-1 mb-4">
+                        <span class="text-uvg-green font-black text-2xl leading-none">UVG</span>
+                        <div class="w-full h-[2px] bg-uvg-green my-1"></div>
+                    </div>
+                    <h1 class="text-2xl font-bold text-uvg-navy font-outfit">Acceso Restringido</h1>
+                    <p class="text-sm text-slate-500 mt-2">Panel de edición del Reporte de Investigación</p>
+                </div>
+
+                <form id="login-form" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1"><i class="fa-solid fa-user text-uvg-green mr-1"></i> Usuario</label>
+                        <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-uvg-accent focus:border-transparent transition" placeholder="Ingresa tu usuario" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1"><i class="fa-solid fa-key text-uvg-green mr-1"></i> Contraseña</label>
+                        <input type="password" id="password" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-uvg-accent focus:border-transparent transition" placeholder="••••••••" required>
+                    </div>
+                    
+                    <div id="login-error" class="text-red-500 text-sm text-center hidden font-medium bg-red-50 py-2 rounded-lg border border-red-100">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Usuario o contraseña incorrectos.
+                    </div>
+
+                    <button type="submit" class="w-full bg-uvg-navy hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex justify-center items-center gap-2">
+                        Ingresar al Panel <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <a href="index.html" class="text-sm text-slate-500 hover:text-uvg-green transition"><i class="fa-solid fa-arrow-left"></i> Volver al documento</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         SECCIÓN 2: PANEL DE ADMINISTRACIÓN (CMS)
+         ========================================== -->
+    <div id="admin-section" class="hidden-section flex-col min-h-screen">
+        
+        <!-- Navbar Admin -->
+        <header class="bg-uvg-navy text-white shadow-lg sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white text-uvg-navy w-8 h-8 rounded flex items-center justify-center font-bold">UVG</div>
+                    <h1 class="text-lg font-bold font-outfit hidden sm:block">Gestor de Contenidos (CMS)</h1>
+                </div>
+                <div class="flex gap-3">
+                    <a href="index.html" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-eye"></i> <span class="hidden sm:inline">Ver Dashboard</span>
+                    </a>
+                    <button onclick="logout()" class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-lg text-sm shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-power-off"></i> <span class="hidden sm:inline">Cerrar Sesión</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Editor -->
+        <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full">
+            
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 rounded-r-lg shadow-sm">
+                <div class="flex items-start">
+                    <i class="fa-solid fa-circle-info text-blue-500 mt-1 mr-3 text-lg"></i>
+                    <div>
+                        <h3 class="font-bold text-blue-800 text-sm">Editor de Textos Dinámicos</h3>
+                        <p class="text-blue-600 text-xs mt-1">Los cambios que guardes aquí se reflejarán automáticamente en el Dashboard principal de las gráficas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8">
+                <div class="flex items-center justify-between mb-6 border-b border-slate-200 pb-4">
+                    <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Interpretaciones de Gráficas</h2>
+                    <button onclick="saveData()" class="bg-uvg-green hover:bg-uvg-accent text-white px-6 py-2 rounded-lg font-bold shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios
+                    </button>
+                </div>
+
+                <div id="editor-container" class="space-y-8">
+                    <!-- Los textareas se generarán por JavaScript -->
+                </div>
+
+                <div class="mt-8 border-t border-slate-200 pt-6 text-right">
+                    <button onclick="saveData()" class="bg-uvg-green hover:bg-uvg-accent text-white px-8 py-3 rounded-lg font-bold shadow-lg transition text-lg inline-flex items-center gap-2">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Todo
+                    </button>
+                </div>
+            </div>
+            
+        </main>
+        
+        <footer class="bg-slate-800 text-slate-400 text-center py-4 text-xs">
+            Sistema CMS Local - Universidad del Valle de Guatemala
+        </footer>
+    </div>
+
+    <!-- Toast de Notificación -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 bg-uvg-navy text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 z-50">
+        <i class="fa-solid fa-circle-check text-uvg-accent text-xl"></i>
+        <div>
+            <h4 class="font-bold text-sm">Guardado Exitoso</h4>
+            <p class="text-xs text-slate-300">Los textos han sido actualizados.</p>
+        </div>
+    </div>
+
+    <script>
+        // === Textos por defecto en caso de no haber datos guardados ===
+        const defaultTexts = {
+            q1: "El objetivo es evaluar la presencia del hábito de lectura por iniciativa propia, lo que permite explorar si la lectura se asume como una actividad voluntaria, aportando información sobre el desarrollo de hábitos culturales y formativos.",
+            q2: "Tiene como finalidad reconocer si los estudiantes invierten tiempo extra fuera de lo obligatorio para reforzar su formación académica.",
+            q3: "La pregunta evalúa si los participantes reconocen una mejora en su comprensión y uso de términos técnicos como resultado de las lecturas realizadas.",
+            q4: "Su propósito es identificar qué fuentes de información favorecen mejor al proceso de aprendizaje y asimilación de contenido.",
+            q5: "Permite analizar factores internos y externos que afectan el hábito lector de los estudiantes y que además condicionan la frecuencia y el interés por la lectura.",
+            q6: "Permite analizar la relación entre el hábito lector y la mejora de calificaciones en distintas áreas de formación administrativa.",
+            q7: "Evidencia el nivel de demanda que enfrentan los estudiantes y cómo los docentes otorgan importancia a la lectura como herramienta de aprendizaje.",
+            q8: "Propósito: comprender cómo los estudiantes vinculan la lectura con su desempeño en la interpretación, análisis y resolución de problemas complejos.",
+            q9: "Analiza cómo las lecturas influyen en el pensamiento crítico y en la capacidad para reflexionar y tomar una postura frente a los dilemas éticos empresariales.",
+            q10: "Identifica los factores principales que limitan o bloquean el desarrollo de hábitos de lectura especializada en el ámbito universitario."
+        };
+
+        const titles = [
+            "Gráfica 01: Frecuencia de lectura por interés propio",
+            "Gráfica 02: ¿Dedicación mayor a 4 horas extra?",
+            "Gráfica 03: Mejora en Vocabulario Técnico",
+            "Gráfica 04: Material de Mayor Retención",
+            "Gráfica 05: Factores que condicionan la lectura",
+            "Gráfica 06: Áreas de impacto en notas",
+            "Gráfica 07: Intensidad de Exigencia (1-10)",
+            "Gráfica 08: Capacidad en Simuladores",
+            "Gráfica 09: Postura y Criterio Ético",
+            "Gráfica 10: Obstáculos en la rutina"
+        ];
+
+        // === Lógica de Login ===
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            
+            // Credenciales: admin / uvg2026
+            if(user === 'admin' && pass === 'uvg2026') {
+                sessionStorage.setItem('uvg_logged_in', 'true');
+                showAdminPanel();
+            } else {
+                const errorDiv = document.getElementById('login-error');
+                errorDiv.classList.remove('hidden');
+                setTimeout(() => errorDiv.classList.add('hidden'), 3000);
+            }
+        });
+
+        function logout() {
+            sessionStorage.removeItem('uvg_logged_in');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('admin-section').classList.add('hidden-section');
+            document.getElementById('admin-section').classList.remove('flex');
+            document.getElementById('login-section').classList.remove('hidden-section');
+            document.getElementById('login-section').classList.add('flex');
+        }
+
+        // === Inicializar Editor ===
+        function showAdminPanel() {
+            document.getElementById('login-section').classList.add('hidden-section');
+            document.getElementById('login-section').classList.remove('flex');
+            document.getElementById('admin-section').classList.remove('hidden-section');
+            document.getElementById('admin-section').classList.add('flex');
+            
+            loadEditorFields();
+        }
+
+        function loadEditorFields() {
+            const container = document.getElementById('editor-container');
+            container.innerHTML = ''; // Limpiar
+            
+            // Obtener datos guardados o usar default
+            let savedData = JSON.parse(localStorage.getItem('uvg_cms_data'));
+            if (!savedData || !savedData.desglosado) {
+                savedData = { desglosado: defaultTexts };
+            }
+
+            // Generar los 10 textareas
+            for(let i = 1; i <= 10; i++) {
+                const key = 'q' + i;
+                const valorActual = savedData.desglosado[key] || defaultTexts[key] || "";
+                
+                const html = `
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-uvg-green/50 transition">
+                        <label class="block text-sm font-bold text-uvg-navy mb-2">
+                            <span class="bg-uvg-navy text-white px-2 py-1 rounded text-xs mr-2">Q${i}</span> 
+                            ${titles[i-1]}
+                        </label>
+                        <textarea id="edit-q${i}" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-uvg-accent focus:border-transparent text-slate-600 text-sm resize-y leading-relaxed">${valorActual}</textarea>
+                    </div>
+                `;
+                container.innerHTML += html;
+            }
+        }
+
+        // === Guardar Datos ===
+        function saveData() {
+            const newData = { desglosado: {} };
+            for(let i = 1; i <= 10; i++) {
+                const textarea = document.getElementById('edit-q' + i);
+                if(textarea) {
+                    newData.desglosado['q' + i] = textarea.value;
+                }
+            }
+            
+            // Guardar en almacenamiento del navegador
+            localStorage.setItem('uvg_cms_data', JSON.stringify(newData));
+            
+            // Mostrar notificación Toast
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // === Verificar sesión activa al cargar la página ===
+        window.onload = function() {
+            if(sessionStorage.getItem('uvg_logged_in') === 'true') {
+                showAdminPanel();
+            }
+        };
+    </script>
+</body>
+</html>
