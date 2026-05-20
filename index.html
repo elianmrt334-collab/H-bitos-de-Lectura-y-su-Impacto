@@ -12,10 +12,10 @@
                 extend: {
                     colors: {
                         uvg: {
-                            green: '#166534', // Verde esmeralda profundo (agradable a la vista)
-                            navy: '#1e293b',  // Azul pizarra oscuro (menos agresivo que el negro o azul puro)
-                            light: '#f0fdf4', // Fondo verde menta muy suave y relajante
-                            accent: '#22c55e' // Verde brillante para detalles y botones
+                            green: '#166534',
+                            navy: '#1e293b',
+                            light: '#f0fdf4',
+                            accent: '#22c55e'
                         }
                     }
                 }
@@ -24,11 +24,10 @@
     </script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chart.js Datalabels Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <!-- html2pdf.js para exportar a PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <!-- FontAwesome para Íconos -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -36,7 +35,6 @@
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
         h1, h2, h3, h4, h5, .font-outfit { font-family: 'Outfit', sans-serif; }
         
-        /* Animaciones avanzadas al hacer scroll */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .reveal-left { opacity: 0; transform: translateX(-30px); transition: all 0.8s ease-out; }
@@ -44,25 +42,19 @@
         .reveal-right { opacity: 0; transform: translateX(30px); transition: all 0.8s ease-out; }
         .reveal-right.active { opacity: 1; transform: translateX(0); }
 
-        /* Efectos en tarjetas (Estilo Presentación Suave) */
         .glass-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         .hover-lift { transition: transform 0.4s ease, box-shadow 0.4s ease; }
         .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03); }
         
-        /* Línea de tiempo Institucional */
         .timeline-line::before { content: ''; position: absolute; top: 0; bottom: 0; left: 24px; width: 2px; background: #e2e8f0; z-index: 0; }
-        @media (min-width: 768px) {
-            .timeline-line::before { left: 50%; transform: translateX(-50%); }
-        }
+        @media (min-width: 768px) { .timeline-line::before { left: 50%; transform: translateX(-50%); } }
 
-        /* Contenedor de Imágenes Editables */
         .img-placeholder-container { position: relative; overflow: hidden; border-radius: 0.75rem; background-color: #f1f5f9; border: 1px dashed #cbd5e1; }
         .img-placeholder-container img { width: 100%; height: auto; object-fit: cover; transition: opacity 0.3s; }
         .img-placeholder-container:hover img { opacity: 0.7; }
         .img-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; background: rgba(0,0,0,0.1); pointer-events: none; }
         .img-placeholder-container:hover .img-overlay { opacity: 1; }
 
-        /* Utilidades para impresión/PDF */
         @media print {
             .no-print { display: none !important; }
             body { background-color: white; }
@@ -75,702 +67,317 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col relative">
 
-    <!-- Encabezado Institucional -->
     <header class="bg-uvg-navy text-white pt-16 pb-24 px-4 md:px-8 shadow-xl relative overflow-hidden no-print border-b-8 border-uvg-green">
-        <!-- Textura sutil de fondo -->
         <div class="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-        
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
             <div class="flex flex-col md:flex-row items-center gap-6">
-                
-                <!-- LOGO UVG RECREADO -->
+                <!-- LOGO UVG -->
                 <div class="bg-white border-[6px] border-uvg-navy flex flex-col items-center justify-center px-4 py-3 shadow-lg shrink-0 rounded-sm" style="width: 140px;">
                     <span class="text-uvg-green font-black text-[3.25rem] leading-none tracking-tighter" style="font-family: 'Arial', sans-serif;">UVG</span>
                     <div class="w-full h-[2px] bg-uvg-green my-1"></div>
-                    <span class="text-uvg-green text-[7px] uppercase leading-tight tracking-[0.08em] text-center font-semibold" style="font-family: 'Arial', sans-serif;">
-                        Universidad<br>del Valle<br>de Guatemala
-                    </span>
+                    <span class="text-uvg-green text-[7px] uppercase leading-tight tracking-[0.08em] text-center font-semibold" style="font-family: 'Arial', sans-serif;">Universidad<br>del Valle<br>de Guatemala</span>
                 </div>
-                <!-- FIN DEL LOGO -->
-
                 <div class="text-center md:text-left">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200 text-xs font-bold uppercase tracking-widest mb-3">
                         <span class="w-2 h-2 rounded-full bg-uvg-accent"></span> Reporte de Investigación
                     </div>
-                    <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-2 font-outfit">Hábitos de Lectura y su Impacto</h1>
-                    <p class="text-slate-300 text-lg font-light border-l-4 border-uvg-accent pl-3">Facultad de Administración de Negocios</p>
+                    <h1 id="dyn-header-title" class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-2 font-outfit">Hábitos de Lectura y su Impacto</h1>
+                    <p id="dyn-header-subtitle" class="text-slate-300 text-lg font-light border-l-4 border-uvg-accent pl-3">Facultad de Administración de Negocios</p>
                 </div>
             </div>
-            
-            <!-- CONTENEDOR DE BOTONES -->
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="downloadPDF()" id="pdf-btn" class="px-6 py-3 bg-uvg-green hover:bg-uvg-accent text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 hover:-translate-y-1 border border-transparent">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    Descargar PDF
+                <button onclick="downloadPDF()" id="pdf-btn" class="px-6 py-3 bg-uvg-green hover:bg-uvg-accent text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-pdf"></i> Descargar PDF
                 </button>
-                <a href="Panel_Administracion.html" class="px-6 py-3 bg-white text-uvg-navy hover:bg-slate-50 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 hover:-translate-y-1">
-                    <i class="fa-solid fa-lock"></i>
-                    Login
+                <a href="Panel_Administracion.html" class="px-6 py-3 bg-white text-uvg-navy hover:bg-slate-50 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock"></i> Editar Proyecto (Login)
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL (Se convertirá a PDF) -->
     <main id="documento-completo" class="max-w-7xl mx-auto px-4 md:px-8 w-full flex-grow pb-24 -mt-12 relative z-20">
 
-        <!-- Portada de Documento -->
+        <!-- Portada -->
         <div class="glass-card rounded-2xl p-8 md:p-12 hover-lift border-t-[6px] border-uvg-green reveal mb-10 shadow-lg relative overflow-hidden">
-            <!-- Marca de agua sutil en la portada -->
             <i class="fa-solid fa-book-open-reader absolute -right-10 -bottom-10 text-[250px] text-slate-50 opacity-[0.3] z-0 pointer-events-none"></i>
-            
             <div class="relative z-10 text-center">
-                <h2 class="text-sm font-bold text-uvg-navy tracking-widest uppercase mb-4">Campus Altiplano • Técnico en Administración de Empresas</h2>
-                <h1 class="text-3xl md:text-5xl font-bold text-slate-800 mb-8 font-outfit leading-tight">El hábito de lectura y su impacto académico en estudiantes</h1>
+                <h2 id="dyn-cover-subtitle" class="text-sm font-bold text-uvg-navy tracking-widest uppercase mb-4">Campus Altiplano • Técnico en Administración de Empresas</h2>
+                <h1 id="dyn-cover-title" class="text-3xl md:text-5xl font-bold text-slate-800 mb-8 font-outfit leading-tight">El hábito de lectura y su impacto académico en estudiantes</h1>
                 
-                <!-- NOMBRES COMPLETOS CON FOTOS DE INTEGRANTES -->
                 <div class="flex flex-col md:flex-row flex-wrap justify-center gap-8 md:gap-12 text-sm text-slate-600 font-medium mb-10 mt-6">
-                    
-                    <!-- Integrante 1: Kristel -->
                     <div class="flex flex-col items-center gap-3">
                         <div class="w-24 h-24 !rounded-full img-placeholder-container shadow-md border-4 border-white ring-2 ring-uvg-light relative group">
-                            <img src="https://placehold.co/200x200/e2e8f0/475569?text=Foto" alt="Kristel Nalleli Pascual España" class="w-full h-full object-cover !rounded-full">
+                            <img src="https://placehold.co/200x200/e2e8f0/475569?text=Foto+1" alt="Integrante 1" class="w-full h-full object-cover !rounded-full">
                             <div class="img-overlay !rounded-full"><span class="bg-white text-slate-700 text-[10px] font-bold px-2 py-1 rounded shadow-md"><i class="fa-solid fa-camera"></i></span></div>
                         </div>
                         <div class="text-center">
-                            <span class="block text-uvg-navy font-bold text-base">Kristel Nalleli Pascual</span>
+                            <span id="dyn-member1" class="block text-uvg-navy font-bold text-base">Kristel Nalleli Pascual España</span>
                             <span class="text-xs text-slate-500">Investigadora</span>
                         </div>
                     </div>
-
-                    <!-- Integrante 2: Elián -->
                     <div class="flex flex-col items-center gap-3">
                         <div class="w-24 h-24 !rounded-full img-placeholder-container shadow-md border-4 border-white ring-2 ring-uvg-light relative group">
-                            <img src="https://placehold.co/200x200/e2e8f0/475569?text=Foto" alt="Elián Antonio Martínez Jácome" class="w-full h-full object-cover !rounded-full">
+                            <img src="https://placehold.co/200x200/e2e8f0/475569?text=Foto+2" alt="Integrante 2" class="w-full h-full object-cover !rounded-full">
                             <div class="img-overlay !rounded-full"><span class="bg-white text-slate-700 text-[10px] font-bold px-2 py-1 rounded shadow-md"><i class="fa-solid fa-camera"></i></span></div>
                         </div>
                         <div class="text-center">
-                            <span class="block text-uvg-navy font-bold text-base">Elián Antonio Martínez</span>
+                            <span id="dyn-member2" class="block text-uvg-navy font-bold text-base">Elián Antonio Martínez Jácome</span>
                             <span class="text-xs text-slate-500">Investigador</span>
                         </div>
                     </div>
-
-                    <!-- Integrante 3: Christian -->
                     <div class="flex flex-col items-center gap-3">
                         <div class="w-24 h-24 !rounded-full img-placeholder-container shadow-md border-4 border-white ring-2 ring-uvg-light relative group">
-                            <img src="https://placehold.co/200x200/e2e8f0/475569?text=Foto" alt="Christian José Cortéz Bolla" class="w-full h-full object-cover !rounded-full">
+                            <img src="https://placehold.co/200x200/e2e8f0/475569?text=Foto+3" alt="Integrante 3" class="w-full h-full object-cover !rounded-full">
                             <div class="img-overlay !rounded-full"><span class="bg-white text-slate-700 text-[10px] font-bold px-2 py-1 rounded shadow-md"><i class="fa-solid fa-camera"></i></span></div>
                         </div>
                         <div class="text-center">
-                            <span class="block text-uvg-navy font-bold text-base">Christian José Cortéz</span>
+                            <span id="dyn-member3" class="block text-uvg-navy font-bold text-base">Christian José Cortéz Bolla</span>
                             <span class="text-xs text-slate-500">Investigador</span>
                         </div>
                     </div>
-
                 </div>
-                
                 <div class="flex flex-wrap justify-center gap-4 text-sm text-slate-500 font-medium border-t border-slate-100 pt-6">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-uvg-navy"></i> Lic. José Antonio López Rodríguez</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-uvg-navy"></i> <span id="dyn-prof">Lic. José Antonio López Rodríguez</span></span>
                     <span class="hidden md:inline text-slate-300">|</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-calendar text-uvg-navy"></i> Ciclo Académico 2026</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-calendar text-uvg-navy"></i> <span id="dyn-year">Ciclo Académico 2026</span></span>
                 </div>
             </div>
         </div>
 
-        <!-- ÍNDICE DE CONTENIDO -->
+        <!-- Índice -->
         <div class="glass-card rounded-2xl p-8 hover-lift border-l-4 border-uvg-navy reveal mb-10">
             <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy shadow-sm">
-                    <i class="fa-solid fa-list-ul"></i>
-                </div>
+                <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy shadow-sm"><i class="fa-solid fa-list-ul"></i></div>
                 <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Índice de Contenido</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <a href="#planteamiento" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light transition text-slate-600 hover:text-uvg-green font-medium">
-                    <i class="fa-solid fa-magnifying-glass w-5 text-center text-uvg-accent"></i> 1. El Problema de Investigación
-                </a>
-                <a href="#objetivos" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light transition text-slate-600 hover:text-uvg-green font-medium">
-                    <i class="fa-solid fa-bullseye w-5 text-center text-uvg-accent"></i> 2. Objetivos Establecidos
-                </a>
-                <a href="#marco-teorico" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light transition text-slate-600 hover:text-uvg-green font-medium">
-                    <i class="fa-solid fa-book-open w-5 text-center text-uvg-accent"></i> 3. Marco Teórico (Era Digital)
-                </a>
-                <a href="#metodologia" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light transition text-slate-600 hover:text-uvg-green font-medium">
-                    <i class="fa-solid fa-flask w-5 text-center text-uvg-accent"></i> 4. Diseño Metodológico
-                </a>
-                <a href="#resultados" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light transition text-slate-600 hover:text-uvg-green font-medium">
-                    <i class="fa-solid fa-chart-pie w-5 text-center text-uvg-accent"></i> 5. Resultados del Estudio
-                </a>
-                <a href="#matriz-pni" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light transition text-slate-600 hover:text-uvg-green font-medium">
-                    <i class="fa-solid fa-table-columns w-5 text-center text-uvg-accent"></i> 6. Matriz PNI
-                </a>
+                <a href="#planteamiento" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light text-slate-600 font-medium"><i class="fa-solid fa-magnifying-glass w-5 text-uvg-accent"></i> 1. El Problema</a>
+                <a href="#objetivos" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light text-slate-600 font-medium"><i class="fa-solid fa-bullseye w-5 text-uvg-accent"></i> 2. Objetivos</a>
+                <a href="#marco-teorico" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light text-slate-600 font-medium"><i class="fa-solid fa-book-open w-5 text-uvg-accent"></i> 3. Marco Teórico</a>
+                <a href="#metodologia" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light text-slate-600 font-medium"><i class="fa-solid fa-flask w-5 text-uvg-accent"></i> 4. Metodología</a>
+                <a href="#resultados" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light text-slate-600 font-medium"><i class="fa-solid fa-chart-pie w-5 text-uvg-accent"></i> 5. Resultados</a>
+                <a href="#matriz-pni" class="flex items-center gap-3 p-3 rounded-lg hover:bg-uvg-light text-slate-600 font-medium"><i class="fa-solid fa-table-columns w-5 text-uvg-accent"></i> 6. Matriz PNI</a>
             </div>
         </div>
 
-        <!-- SECCIÓN 1: Planteamiento y Objetivos -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-            
-            <!-- Planteamiento y Pregunta -->
+            <!-- Problema -->
             <div id="planteamiento" class="scroll-mt-10 glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green reveal flex flex-col">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-full bg-uvg-light flex items-center justify-center text-uvg-green shadow-sm">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-uvg-navy font-outfit">El Problema</h2>
-                </div>
-                
-                <!-- ESPACIO PARA IMAGEN 1 -->
+                <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-uvg-light flex items-center justify-center text-uvg-green shadow-sm"><i class="fa-solid fa-magnifying-glass"></i></div><h2 class="text-2xl font-bold text-uvg-navy font-outfit">El Problema</h2></div>
                 <div class="img-placeholder-container my-4 shadow-sm">
-                    <img src="https://placehold.co/600x250/e2e8f0/475569?text=Insertar+Imagen+del+Problema" alt="Imagen del problema">
-                    <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-md"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
+                    <img src="https://placehold.co/600x250/e2e8f0/475569?text=Imagen+Problema" alt="Problema">
+                    <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
                 </div>
-
                 <div class="text-slate-600 space-y-4 text-justify flex-grow">
-                    <p>En la sociedad actual, se observa una pérdida progresiva del interés por la lectura, la cual ha sido reemplazada en gran medida por el consumo digital. La falta de hábitos lectores sólidos desde etapas formativas contribuye al abandono de textos académicos y literarios esenciales, creando una barrera en el desarrollo educativo y cognitivo.</p>
+                    <p id="dyn-prob-p1">En la sociedad actual, se observa una pérdida progresiva del interés por la lectura...</p>
+                    <p id="dyn-prob-p2">Las principales consecuencias incluyen el deterioro de la concentración...</p>
                 </div>
                 <div class="mt-6 bg-slate-50 p-5 rounded-xl border-l-4 border-uvg-navy relative">
-                    <p class="text-uvg-navy font-semibold italic relative z-10 text-center">
-                        "¿Qué factores, además de la tecnología, influyen en el bajo hábito de lectura actual y de qué manera afectan la capacidad de comprensión lectora en los estudiantes?"
-                    </p>
+                    <p id="dyn-prob-q" class="text-uvg-navy font-semibold italic text-center">"¿Qué factores, además de la tecnología, influyen...?"</p>
                 </div>
             </div>
 
             <!-- Objetivos -->
             <div id="objetivos" class="scroll-mt-10 glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy reveal flex flex-col">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy shadow-sm">
-                        <i class="fa-solid fa-bullseye"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Objetivos</h2>
-                </div>
-                
-                <!-- ESPACIO PARA IMAGEN 2 -->
+                <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy shadow-sm"><i class="fa-solid fa-bullseye"></i></div><h2 class="text-2xl font-bold text-uvg-navy font-outfit">Objetivos</h2></div>
                 <div class="img-placeholder-container my-4 shadow-sm">
-                    <img src="https://placehold.co/600x150/e2e8f0/475569?text=Insertar+Imagen+de+Objetivos" alt="Imagen de objetivos">
-                    <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-md"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
+                    <img src="https://placehold.co/600x150/e2e8f0/475569?text=Imagen+Objetivos" alt="Objetivos">
+                    <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
                 </div>
-
                 <div class="mb-6">
                     <h3 class="text-xs font-bold text-uvg-green uppercase tracking-wider mb-2">Objetivo General</h3>
-                    <p class="text-slate-600 bg-uvg-light p-4 rounded-lg border border-uvg-green/20 text-justify text-sm shadow-sm">
-                        Analizar las causas del bajo hábito de lectura en los estudiantes de primer año de la carrera de Técnico en Administración de Empresas de la UVG, para identificar su capacidad analítica y promover acciones que fomenten el interés por la lectura a lo largo del ciclo académico.
-                    </p>
+                    <p id="dyn-obj-gen" class="text-slate-600 bg-uvg-light p-4 rounded-lg border border-uvg-green/20 text-justify text-sm">Analizar las causas del bajo hábito de lectura...</p>
                 </div>
-
                 <div>
                     <h3 class="text-xs font-bold text-uvg-navy uppercase tracking-wider mb-2">Objetivos Específicos</h3>
                     <ul class="space-y-3">
-                        <li class="flex gap-3 text-slate-600 text-sm">
-                            <i class="fa-solid fa-check text-uvg-accent mt-1 font-bold"></i>
-                            <span class="text-justify">Determinar el nivel de comprensión lectora y el tiempo semanal que los estudiantes dedican a textos académicos.</span>
-                        </li>
-                        <li class="flex gap-3 text-slate-600 text-sm">
-                            <i class="fa-solid fa-check text-uvg-accent mt-1 font-bold"></i>
-                            <span class="text-justify">Diseñar una estrategia de contenidos y casos reales que conecten la lectura con la práctica administrativa.</span>
-                        </li>
+                        <li class="flex gap-3 text-slate-600 text-sm"><i class="fa-solid fa-check text-uvg-accent mt-1"></i><span id="dyn-obj-e1" class="text-justify">Determinar el nivel de comprensión lectora...</span></li>
+                        <li class="flex gap-3 text-slate-600 text-sm"><i class="fa-solid fa-check text-uvg-accent mt-1"></i><span id="dyn-obj-e2" class="text-justify">Diseñar una estrategia de contenidos...</span></li>
+                        <li class="flex gap-3 text-slate-600 text-sm"><i class="fa-solid fa-check text-uvg-accent mt-1"></i><span id="dyn-obj-e3" class="text-justify">Identificar las barreras principales...</span></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN 2: Marco Teórico -->
+        <!-- Marco Teórico -->
         <div id="marco-teorico" class="scroll-mt-10 glass-card rounded-2xl p-8 hover-lift border-l-4 border-uvg-green reveal mb-10">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-full bg-uvg-light flex items-center justify-center text-uvg-green shadow-sm">
-                    <i class="fa-solid fa-book-open"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Marco Teórico: La Lectura en la Era Digital</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-600 text-justify leading-relaxed text-sm">
+            <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-uvg-light flex items-center justify-center text-uvg-green shadow-sm"><i class="fa-solid fa-book-open"></i></div><h2 class="text-2xl font-bold text-uvg-navy font-outfit">Marco Teórico</h2></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-600 text-justify text-sm">
                 <div class="space-y-4">
-                    <p>Para comprender la carencia del hábito lector, es indispensable revisar cómo el desinterés afecta a los estudiantes que ingresan a la educación superior. Muchos conciben la lectura únicamente como una obligación para aprobar evaluaciones, dificultando su adaptación al rigor universitario (Carlino, 2005). Las deficiencias arrastradas desde la educación media se trasladan a la universidad, impidiendo asimilar textos académicos complejos e innovar frente a problemas profesionales reales (García, 2018).</p>
-                    
-                    <!-- ESPACIO PARA IMAGEN 3 -->
-                    <div class="img-placeholder-container my-4 shadow-sm">
-                        <img src="https://placehold.co/500x250/e2e8f0/475569?text=Insertar+Imagen+Teorica+1" alt="Imagen teoría 1">
-                        <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-md"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
-                    </div>
-
-                    <p>Superar esta barrera requiere desarrollar la <strong class="text-uvg-navy">comprensión lectora</strong>, un proceso cognitivo de alta complejidad. No se trata de repetir de memoria, sino de "la capacidad humana fundamental para interpretar, cuestionar y reflexionar activamente sobre las ideas de un autor" (Solé, 2012).</p>
+                    <p id="dyn-mar-p1">Para comprender la carencia del hábito lector...</p>
+                    <div class="img-placeholder-container my-4 shadow-sm"><img src="https://placehold.co/500x250/e2e8f0/475569?text=Imagen+Marco+1"><div class="img-overlay"><span class="bg-white text-slate-700 text-xs px-3 py-1 rounded-full"><i class="fa-solid fa-image"></i> Cambiar en código</span></div></div>
+                    <p id="dyn-mar-p2">Superar esta barrera requiere desarrollar la comprensión lectora...</p>
                 </div>
                 <div class="space-y-4">
-                    <!-- ESPACIO PARA IMAGEN 4 -->
-                    <div class="img-placeholder-container mb-4 shadow-sm">
-                        <img src="https://placehold.co/500x200/e2e8f0/475569?text=Insertar+Imagen+Teorica+2" alt="Imagen teoría 2">
-                        <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-md"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
-                    </div>
-
-                    <p>Sin embargo, esta autonomía está fuertemente amenazada. Los estudiantes actuales reciben estímulos visuales rápidos, una inmediatez que "reduce notablemente su capacidad neurológica para mantener atención sostenida frente a textos de mayor longitud" (Wolf, 2018). El uso desmedido de dispositivos móviles fomenta una navegación superficial que "altera nuestras estructuras cognitivas y limita el pensamiento reflexivo" (Carr, 2011).</p>
-                    <p>La cultura del "scrolling" debilita la capacidad analítica y genera una falsa ilusión de conocimiento. Frente a esto, la presente investigación busca conectar estos fundamentos teóricos con la realidad de los estudiantes de la UVG, diagnosticando su nivel para plantear soluciones estratégicas.</p>
+                    <div class="img-placeholder-container mb-4 shadow-sm"><img src="https://placehold.co/500x200/e2e8f0/475569?text=Imagen+Marco+2"><div class="img-overlay"><span class="bg-white text-slate-700 text-xs px-3 py-1 rounded-full"><i class="fa-solid fa-image"></i> Cambiar en código</span></div></div>
+                    <p id="dyn-mar-p3">Sin embargo, esta autonomía está fuertemente amenazada...</p>
+                    <p id="dyn-mar-p4">La cultura del scrolling debilita la capacidad analítica...</p>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN 3: Metodología -->
+        <!-- Metodología -->
         <div id="metodologia" class="scroll-mt-10 glass-card rounded-2xl p-8 hover-lift border-l-4 border-uvg-navy reveal mb-16">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy shadow-sm">
-                    <i class="fa-solid fa-flask"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Diseño Metodológico</h2>
-            </div>
-
-            <!-- ESPACIO PARA IMAGEN 5 (OPCIONAL BANNER METODOLOGÍA) -->
-            <div class="img-placeholder-container mb-8 shadow-sm">
-                <img src="https://placehold.co/1000x200/e2e8f0/475569?text=Insertar+Banner+o+Esquema+Metodologico" alt="Esquema Metodológico">
-                <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-md"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
-            </div>
-
+            <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy shadow-sm"><i class="fa-solid fa-flask"></i></div><h2 class="text-2xl font-bold text-uvg-navy font-outfit">Diseño Metodológico</h2></div>
+            <div class="img-placeholder-container mb-8 shadow-sm"><img src="https://placehold.co/1000x200/e2e8f0/475569?text=Esquema+Metodologico"><div class="img-overlay"><span class="bg-white text-slate-700 text-xs px-3 py-1 rounded-full"><i class="fa-solid fa-image"></i> Cambiar en código</span></div></div>
             <div class="flex flex-wrap gap-6">
-                <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm min-w-[250px] relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 bg-uvg-light rounded-bl-full -z-10"></div>
-                    <h3 class="font-bold text-uvg-green mb-2"><i class="fa-solid fa-microscope mr-2 text-uvg-navy"></i> Tipo y Técnica</h3>
-                    <p class="text-slate-600 text-sm">Investigación de carácter <strong>exploratoria</strong>. Se emplearon técnicas de <strong>encuesta y observación</strong> directa para el levantamiento de información primaria.</p>
-                </div>
-                <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm min-w-[250px] relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 bg-uvg-light rounded-bl-full -z-10"></div>
-                    <h3 class="font-bold text-uvg-green mb-2"><i class="fa-solid fa-users-viewfinder mr-2 text-uvg-navy"></i> Población</h3>
-                    <p class="text-slate-600 text-sm">Enfocado en la comunidad estudiantil, específicamente centrado en los <strong>estudiantes de la UVG</strong> (Técnico en Administración de Empresas).</p>
-                </div>
-                <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm min-w-[250px] relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 bg-uvg-light rounded-bl-full -z-10"></div>
-                    <h3 class="font-bold text-uvg-green mb-2"><i class="fa-solid fa-lightbulb mr-2 text-uvg-navy"></i> Enfoque</h3>
-                    <p class="text-slate-600 text-sm">Identificar problemas de pérdida de interés lector para proponer soluciones que mejoren la concentración y el nivel de análisis a largo plazo.</p>
-                </div>
+                <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm"><h3 class="font-bold text-uvg-green mb-2"><i class="fa-solid fa-microscope text-uvg-navy"></i> Tipo y Técnica</h3><p id="dyn-met-tipo" class="text-slate-600 text-sm">Investigación exploratoria...</p></div>
+                <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm"><h3 class="font-bold text-uvg-green mb-2"><i class="fa-solid fa-users text-uvg-navy"></i> Población</h3><p id="dyn-met-pob" class="text-slate-600 text-sm">Enfocado en estudiantes UVG...</p></div>
+                <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm"><h3 class="font-bold text-uvg-green mb-2"><i class="fa-solid fa-lightbulb text-uvg-navy"></i> Enfoque</h3><p id="dyn-met-enf" class="text-slate-600 text-sm">Identificar problemas de interés...</p></div>
             </div>
         </div>
 
-        <div id="resultados" class="scroll-mt-10 text-center mb-12 reveal">
-            <h2 class="text-3xl md:text-4xl font-bold text-uvg-navy font-outfit tracking-tight">Resultados de la Investigación</h2>
-            <div class="h-1 w-24 bg-uvg-accent mx-auto mt-4 rounded-full"></div>
-            <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Análisis gráfico e interpretación de las encuestas aplicadas a los estudiantes de la Facultad de Administración.</p>
-        </div>
-
-        <!-- Contenedor de la Línea de Tiempo Institucional -->
+        <!-- Resultados -->
+        <div id="resultados" class="scroll-mt-10 text-center mb-12 reveal"><h2 class="text-3xl font-bold text-uvg-navy font-outfit">Resultados</h2><div class="h-1 w-24 bg-uvg-accent mx-auto mt-4"></div></div>
+        
         <div class="relative timeline-line pt-8">
-
-            <!-- ================= PREGUNTA 01 ================= -->
-            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">01</div>
-                
-                <div class="w-full md:w-5/12 reveal-left">
-                    <div class="glass-card rounded-2xl p-8 hover-lift">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Frecuencia de lectura por interés propio</h2>
-                        <div class="relative h-64"><canvas id="chartQ1"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right pl-12 md:pl-0">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-graduation-cap text-uvg-accent"></i> Lectura guiada por la evaluación
-                    </h3>
-                    <p id="text-q1" class="text-slate-600 leading-relaxed text-sm text-justify">El objetivo es evaluar la presencia del hábito de lectura por iniciativa propia, lo que permite explorar si la lectura se asume como una actividad voluntaria, aportando información sobre el desarrollo de hábitos culturales y formativos.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 02 ================= -->
-            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">02</div>
-                
-                <div class="w-full md:w-5/12 reveal-right">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">¿Dedicación mayor a 4 horas extra?</h2>
-                        <div class="relative h-64 w-full"><canvas id="chartQ2"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left pl-12 md:pl-0 md:text-right">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center justify-start md:justify-end gap-2">
-                        <i class="fa-solid fa-clock text-uvg-navy"></i> Priorización de entregables
-                    </h3>
-                    <p id="text-q2" class="text-slate-600 leading-relaxed text-sm text-justify md:text-right">Tiene como finalidad reconocer si los estudiantes invierten tiempo extra fuera de lo obligatorio para reforzar su formación académica.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 03 ================= -->
-            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">03</div>
-                
-                <div class="w-full md:w-5/12 reveal-left">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Mejora en Vocabulario Técnico</h2>
-                        <div class="relative h-64 w-full flex items-center justify-center">
-                            <div class="absolute inset-0 flex flex-col items-center justify-center mt-6">
-                                <span class="text-5xl font-black text-uvg-green font-outfit">100%</span>
-                            </div>
-                            <canvas id="chartQ3"></canvas>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right pl-12 md:pl-0">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-comment-dots text-uvg-accent"></i> Impacto en la expresión
-                    </h3>
-                    <p id="text-q3" class="text-slate-600 leading-relaxed text-sm text-justify">La pregunta evalúa si los participantes reconocen una mejora en su comprensión y uso de términos técnicos como resultado de las lecturas realizadas.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 04 ================= -->
-            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">04</div>
-                
-                <div class="w-full md:w-5/12 reveal-right">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Material de Mayor Retención</h2>
-                        <div class="relative h-64 w-full"><canvas id="chartQ4"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left pl-12 md:pl-0 md:text-right">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center justify-start md:justify-end gap-2">
-                        <i class="fa-solid fa-layer-group text-uvg-navy"></i> Preferencia metodológica
-                    </h3>
-                    <p id="text-q4" class="text-slate-600 leading-relaxed text-sm text-justify md:text-right">Su propósito es identificar qué fuentes de información favorecen mejor al proceso de aprendizaje y asimilación de contenido.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 05 ================= -->
-            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">05</div>
-                
-                <div class="w-full md:w-5/12 reveal-left">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Factores que condicionan la lectura</h2>
-                        <div class="relative h-64"><canvas id="chartQ5"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right pl-12 md:pl-0">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-scale-balanced text-uvg-accent"></i> Motivaciones equilibradas
-                    </h3>
-                    <p id="text-q5" class="text-slate-600 leading-relaxed text-sm text-justify">Permite analizar factores internos y externos que afectan el hábito lector de los estudiantes y que además condicionan la frecuencia y el interés por la lectura.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 06 ================= -->
-            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">06</div>
-                
-                <div class="w-full md:w-5/12 reveal-right">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Áreas de impacto en notas</h2>
-                        <div class="relative h-64 w-full"><canvas id="chartQ6"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left pl-12 md:pl-0 md:text-right">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center justify-start md:justify-end gap-2">
-                        <i class="fa-solid fa-chart-line text-uvg-navy"></i> Impacto por materias
-                    </h3>
-                    <p id="text-q6" class="text-slate-600 leading-relaxed text-sm text-justify md:text-right">Permite analizar la relación entre el hábito lector y la mejora de calificaciones en distintas áreas de formación administrativa.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 07 ================= -->
-            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">07</div>
-                
-                <div class="w-full md:w-5/12 reveal-left">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Intensidad de Exigencia (1-10)</h2>
-                        <div class="relative h-64 w-full"><canvas id="chartQ7"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right pl-12 md:pl-0">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-signal text-uvg-accent"></i> Nivel de exigencia general
-                    </h3>
-                    <p id="text-q7" class="text-slate-600 leading-relaxed text-sm text-justify">Evidencia el nivel de demanda que enfrentan los estudiantes y cómo los docentes otorgan importancia a la lectura como herramienta de aprendizaje.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 08 ================= -->
-            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">08</div>
-                
-                <div class="w-full md:w-5/12 reveal-right">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Capacidad en Simuladores</h2>
-                        <div class="relative h-64"><canvas id="chartQ8"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left pl-12 md:pl-0 md:text-right">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center justify-start md:justify-end gap-2">
-                        <i class="fa-solid fa-laptop-code text-uvg-navy"></i> Gestión en resolución
-                    </h3>
-                    <p id="text-q8" class="text-slate-600 leading-relaxed text-sm text-justify md:text-right">Propósito: comprender cómo los estudiantes vinculan la lectura con su desempeño en la interpretación, análisis y resolución de problemas complejos.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 09 ================= -->
-            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">09</div>
-                
-                <div class="w-full md:w-5/12 reveal-left">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Postura y Criterio Ético</h2>
-                        <div class="relative h-64 w-full"><canvas id="chartQ9"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right pl-12 md:pl-0">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-gavel text-uvg-accent"></i> Seguridad de decisiones
-                    </h3>
-                    <p id="text-q9" class="text-slate-600 leading-relaxed text-sm text-justify">Analiza cómo las lecturas influyen en el pensamiento crítico y en la capacidad para reflexionar y tomar una postura frente a los dilemas éticos empresariales.</p>
-                </div>
-            </div>
-
-            <!-- ================= PREGUNTA 10 ================= -->
-            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full">
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white font-outfit">10</div>
-                
-                <div class="w-full md:w-5/12 reveal-right">
-                    <div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy">
-                        <h2 class="text-lg font-bold text-uvg-navy mb-6 font-outfit text-center">Obstáculos en la rutina</h2>
-                        <div class="relative h-64 w-full"><canvas id="chartQ10"></canvas></div>
-                    </div>
-                </div>
-                
-                <div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left pl-12 md:pl-0 md:text-right">
-                    <h3 class="text-xl font-bold text-uvg-navy mb-4 flex items-center justify-start md:justify-end gap-2">
-                        <i class="fa-solid fa-ban text-uvg-navy"></i> Perfil integral
-                    </h3>
-                    <p id="text-q10" class="text-slate-600 leading-relaxed text-sm text-justify md:text-right">Identifica los factores principales que limitan o bloquean el desarrollo de hábitos de lectura especializada en el ámbito universitario.</p>
-                </div>
-            </div>
+            <!-- Q1 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">01</div><div class="w-full md:w-5/12 reveal-left"><div class="glass-card rounded-2xl p-8 hover-lift"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Frecuencia de lectura por interés</h2><div class="relative h-64"><canvas id="chartQ1"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-graduation-cap text-uvg-accent"></i> Lectura evaluada</h3><p id="text-q1" class="text-slate-600 text-sm">Texto q1...</p></div></div>
+            <!-- Q2 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">02</div><div class="w-full md:w-5/12 reveal-right"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">¿Mayor a 4 horas?</h2><div class="relative h-64"><canvas id="chartQ2"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left md:text-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-clock text-uvg-navy"></i> Priorización</h3><p id="text-q2" class="text-slate-600 text-sm">Texto q2...</p></div></div>
+            <!-- Q3 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">03</div><div class="w-full md:w-5/12 reveal-left"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Vocabulario Técnico</h2><div class="relative h-64 flex items-center justify-center"><div class="absolute mt-6"><span class="text-5xl font-black text-uvg-green">100%</span></div><canvas id="chartQ3"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-comment-dots text-uvg-accent"></i> Impacto en expresión</h3><p id="text-q3" class="text-slate-600 text-sm">Texto q3...</p></div></div>
+            <!-- Q4 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">04</div><div class="w-full md:w-5/12 reveal-right"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Material de Retención</h2><div class="relative h-64"><canvas id="chartQ4"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left md:text-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-layer-group text-uvg-navy"></i> Preferencia metodológica</h3><p id="text-q4" class="text-slate-600 text-sm">Texto q4...</p></div></div>
+            <!-- Q5 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">05</div><div class="w-full md:w-5/12 reveal-left"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Factores condicionantes</h2><div class="relative h-64"><canvas id="chartQ5"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-scale-balanced text-uvg-accent"></i> Motivaciones</h3><p id="text-q5" class="text-slate-600 text-sm">Texto q5...</p></div></div>
+            <!-- Q6 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">06</div><div class="w-full md:w-5/12 reveal-right"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Impacto en notas</h2><div class="relative h-64"><canvas id="chartQ6"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left md:text-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-chart-line text-uvg-navy"></i> Áreas</h3><p id="text-q6" class="text-slate-600 text-sm">Texto q6...</p></div></div>
+            <!-- Q7 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">07</div><div class="w-full md:w-5/12 reveal-left"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Intensidad Exigencia</h2><div class="relative h-64"><canvas id="chartQ7"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-signal text-uvg-accent"></i> Nivel general</h3><p id="text-q7" class="text-slate-600 text-sm">Texto q7...</p></div></div>
+            <!-- Q8 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">08</div><div class="w-full md:w-5/12 reveal-right"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Simuladores</h2><div class="relative h-64"><canvas id="chartQ8"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left md:text-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-laptop-code text-uvg-navy"></i> Resolución</h3><p id="text-q8" class="text-slate-600 text-sm">Texto q8...</p></div></div>
+            <!-- Q9 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-green border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">09</div><div class="w-full md:w-5/12 reveal-left"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-green"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Criterio Ético</h2><div class="relative h-64"><canvas id="chartQ9"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-gavel text-uvg-accent"></i> Postura</h3><p id="text-q9" class="text-slate-600 text-sm">Texto q9...</p></div></div>
+            <!-- Q10 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full"><div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-uvg-navy border-4 border-white shadow-md items-center justify-center z-10 font-bold text-white">10</div><div class="w-full md:w-5/12 reveal-right"><div class="glass-card rounded-2xl p-8 hover-lift border-t-4 border-uvg-navy"><h2 class="text-lg font-bold text-uvg-navy mb-6 text-center">Obstáculos</h2><div class="relative h-64"><canvas id="chartQ10"></canvas></div></div></div><div class="w-full md:w-5/12 mt-8 md:mt-0 reveal-left md:text-right"><h3 class="text-xl font-bold text-uvg-navy mb-4"><i class="fa-solid fa-ban text-uvg-navy"></i> Perfil</h3><p id="text-q10" class="text-slate-600 text-sm">Texto q10...</p></div></div>
         </div>
 
-        <!-- SECCIÓN 4: Matriz PNI -->
+        <!-- Matriz PNI -->
         <div id="matriz-pni" class="scroll-mt-10 glass-card rounded-2xl p-8 hover-lift border-l-4 border-uvg-green reveal mb-10 pdf-page-break">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-full bg-uvg-light flex items-center justify-center text-uvg-green shadow-sm">
-                    <i class="fa-solid fa-table-columns"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Matriz PNI (Análisis Metodológico)</h2>
-            </div>
-            
-            <!-- ESPACIO PARA IMAGEN 6 (OPCIONAL EN PNI) -->
-            <div class="img-placeholder-container mb-6 shadow-sm">
-                <img src="https://placehold.co/1000x150/e2e8f0/475569?text=Insertar+Imagen+o+Recurso+Visual" alt="Recurso Visual PNI">
-                <div class="img-overlay"><span class="bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-md"><i class="fa-solid fa-image"></i> Cambiar imagen en código</span></div>
-            </div>
-
+            <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-uvg-light flex items-center justify-center text-uvg-green"><i class="fa-solid fa-table-columns"></i></div><h2 class="text-2xl font-bold text-uvg-navy font-outfit">Matriz PNI</h2></div>
             <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
                 <table class="w-full text-sm text-left text-slate-600 min-w-[700px]">
                     <thead class="text-xs text-white uppercase bg-uvg-navy">
-                        <tr>
-                            <th class="px-5 py-4 w-1/3">Positivo <i class="fa-solid fa-plus-circle text-uvg-accent ml-1"></i></th>
-                            <th class="px-5 py-4 w-1/3 bg-opacity-90 bg-uvg-navy">Negativo <i class="fa-solid fa-minus-circle text-rose-400 ml-1"></i></th>
-                            <th class="px-5 py-4 w-1/3 bg-opacity-80 bg-uvg-navy">Interesante <i class="fa-solid fa-lightbulb text-amber-300 ml-1"></i></th>
-                        </tr>
+                        <tr><th class="px-5 py-4 w-1/3">Positivo <i class="fa-solid fa-plus-circle text-uvg-accent ml-1"></i></th><th class="px-5 py-4 w-1/3 bg-opacity-90 bg-uvg-navy">Negativo <i class="fa-solid fa-minus-circle text-rose-400 ml-1"></i></th><th class="px-5 py-4 w-1/3 bg-opacity-80 bg-uvg-navy">Interesante <i class="fa-solid fa-lightbulb text-amber-300 ml-1"></i></th></tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
-                        <tr class="hover:bg-slate-50 transition">
-                            <td class="px-5 py-4 align-top">Buena estructura de la información e investigación.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">Para las personas que empiezan a usar este método puede ser frustrante y rígido.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">Utilización de materiales visuales, que ayudan a una mejor interpretación.</td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition bg-slate-50/50">
-                            <td class="px-5 py-4 align-top">Diferentes métodos y pasos claros que ayudan a la investigación.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">Si se utilizan diferentes etapas o todos los pasos, el proceso puede hacerse más largo y complejo.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">Es posible dar conclusiones en torno a las hipótesis planteadas; la info visual es vital.</td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition">
-                            <td class="px-5 py-4 align-top">Se pueden tomar ideas de información de diferentes fuentes académicas.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">Las fuentes interpretativas pueden contener información distorsionada, afectando la confiabilidad.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">Las herramientas procesan datos pero no sustituyen el análisis crítico del investigador.</td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition bg-slate-50/50">
-                            <td class="px-5 py-4 align-top">Se usan métodos y se concluye con la verificación.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">Usar diferentes métodos al ponerlo en práctica puede ser complicado al inicio.</td>
-                            <td class="px-5 py-4 align-top border-l border-slate-100">De manera adecuada se pueden utilizar diferentes métodos dependiendo de las necesidades.</td>
-                        </tr>
+                        <tr class="hover:bg-slate-50 transition"><td id="dyn-pni-p1" class="px-5 py-4 align-top">Buena estructura...</td><td id="dyn-pni-n1" class="px-5 py-4 align-top border-l border-slate-100">Frustrante...</td><td id="dyn-pni-i1" class="px-5 py-4 align-top border-l border-slate-100">Visual...</td></tr>
+                        <tr class="hover:bg-slate-50 transition bg-slate-50/50"><td id="dyn-pni-p2" class="px-5 py-4 align-top">Diferentes métodos...</td><td id="dyn-pni-n2" class="px-5 py-4 align-top border-l border-slate-100">Largo...</td><td id="dyn-pni-i2" class="px-5 py-4 align-top border-l border-slate-100">Conclusiones...</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td id="dyn-pni-p3" class="px-5 py-4 align-top">Fuentes...</td><td id="dyn-pni-n3" class="px-5 py-4 align-top border-l border-slate-100">Distorsion...</td><td id="dyn-pni-i3" class="px-5 py-4 align-top border-l border-slate-100">Herramientas...</td></tr>
+                        <tr class="hover:bg-slate-50 transition bg-slate-50/50"><td id="dyn-pni-p4" class="px-5 py-4 align-top">Métodos...</td><td id="dyn-pni-n4" class="px-5 py-4 align-top border-l border-slate-100">Complicado...</td><td id="dyn-pni-i4" class="px-5 py-4 align-top border-l border-slate-100">Adecuado...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- SECCIÓN 5: Referencias -->
+        <!-- Referencias -->
         <div id="referencias" class="scroll-mt-10 glass-card rounded-2xl p-8 hover-lift border-l-4 border-uvg-navy reveal mb-10">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy shadow-sm">
-                    <i class="fa-solid fa-quote-right"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Referencias Bibliográficas</h2>
-            </div>
+            <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-uvg-navy"><i class="fa-solid fa-quote-right"></i></div><h2 class="text-2xl font-bold text-uvg-navy font-outfit">Referencias Bibliográficas</h2></div>
             <ul class="space-y-3 text-sm text-slate-600 pl-5 list-none">
-                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> Carlino, P. (2005). <em>Escribir, leer y aprender en la universidad. Una introducción a la alfabetización académica.</em> Fondo de Cultura Económica.</li>
-                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> Carr, N. (2011). <em>Superficiales: ¿Qué está haciendo Internet con nuestras mentes?</em> Taurus.</li>
-                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> García, L. (2018). <em>El desafío de la comprensión lectora en universitarios centroamericanos.</em> Revista de Educación Superior, 12(3), 45-60.</li>
-                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> Solé, I. (2012). <em>Competencia lectora y aprendizaje en la educación superior.</em> Revista Iberoamericana de Educación, 59, 43-61.</li>
-                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> Wolf, M. (2018). <em>Lector, vuelve a casa: Cómo afecta a nuestro cerebro la lectura en pantallas.</em> Ediciones Deusto.</li>
+                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> <span id="dyn-ref1">Carlino, P. (2005)...</span></li>
+                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> <span id="dyn-ref2">Carr, N. (2011)...</span></li>
+                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> <span id="dyn-ref3">García, L. (2018)...</span></li>
+                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> <span id="dyn-ref4">Solé, I. (2012)...</span></li>
+                <li class="relative pl-6"><i class="fa-solid fa-bookmark text-uvg-accent absolute left-0 top-1 text-xs"></i> <span id="dyn-ref5">Wolf, M. (2018)...</span></li>
             </ul>
         </div>
-
     </main>
 
-    <!-- Footer Institucional -->
-    <footer class="bg-uvg-navy text-center py-6 text-slate-400 text-sm no-print mt-auto border-t border-slate-700">
-        <p>Universidad del Valle de Guatemala • Facultad de Administración de Negocios</p>
-    </footer>
-
-    <!-- Script de Exportación, Gráficas y Animaciones -->
     <script>
-        // === PALETA DE COLORES SUAVES PARA GRÁFICAS ===
-        const chartColors = {
-            green: '#166534',   // uvg-green
-            navy: '#1e293b',    // uvg-navy
-            accent: '#22c55e',  // uvg-accent
-            light: '#94a3b8',   // slate-400
-            pastelG: '#86efac'  // green-300
-        };
+        const chartColors = { green: '#166534', navy: '#1e293b', accent: '#22c55e', light: '#94a3b8', pastelG: '#86efac' };
 
-        // Función de Descarga PDF
         function downloadPDF() {
             const element = document.getElementById('documento-completo');
             const btn = document.getElementById('pdf-btn');
             const originalText = btn.innerHTML;
-            
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generando...';
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-                el.classList.add('active');
-                el.style.transition = 'none';
-            });
-
-            const opt = {
-                margin:       [10, 10, 10, 10],
-                filename:     'Reporte_Investigacion_Lectura_UVG.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, windowWidth: 1200 },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => { el.classList.add('active'); el.style.transition = 'none'; });
+            const opt = { margin: [10, 10, 10, 10], filename: 'Reporte_UVG.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true, windowWidth: 1200 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
             html2pdf().set(opt).from(element).save().then(() => {
                 btn.innerHTML = originalText;
-                document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-                    el.style.transition = ''; 
-                });
-            }).catch(err => {
-                console.error("Error PDF: ", err);
-                btn.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Error';
-                setTimeout(() => btn.innerHTML = originalText, 3000);
+                document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => el.style.transition = '');
             });
         }
 
-        // Animaciones de Scroll Inteligentes
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-                observer.observe(el);
-            });
-        });
+            // ==== CARGAR TODOS LOS DATOS DINÁMICOS DESDE EL CMS ====
+            const cmsDataStr = localStorage.getItem('uvg_cms_data');
+            if(cmsDataStr) {
+                const cms = JSON.parse(cmsDataStr);
+                
+                // Función auxiliar para actualizar texto si existe
+                const setTxt = (id, text) => { if(text && document.getElementById(id)) document.getElementById(id).innerText = text; };
 
-        // Configuración Global Chart.js
-        Chart.register(ChartDataLabels);
-        Chart.defaults.font.family = "'Inter', sans-serif";
-        Chart.defaults.color = '#64748b'; // slate-500
-        Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(30, 41, 59, 0.9)'; // uvg-navy
-        Chart.defaults.plugins.tooltip.padding = 12;
-        Chart.defaults.plugins.tooltip.cornerRadius = 8;
-        
-        const datalabelsConfig = { color: '#ffffff', font: { weight: 'bold', size: 14 }, formatter: (value) => value + '%' };
+                // 1. Portada y Generales
+                setTxt('dyn-header-title', cms.global?.mainTitle);
+                setTxt('dyn-header-subtitle', cms.global?.subTitle);
+                setTxt('dyn-cover-title', cms.global?.mainTitle);
+                setTxt('dyn-cover-subtitle', cms.global?.coverSup);
+                setTxt('dyn-member1', cms.global?.int1);
+                setTxt('dyn-member2', cms.global?.int2);
+                setTxt('dyn-member3', cms.global?.int3);
+                setTxt('dyn-prof', cms.global?.prof);
+                setTxt('dyn-year', cms.global?.year);
 
-        // Q1 (Doughnut)
-        new Chart(document.getElementById('chartQ1').getContext('2d'), {
-            type: 'doughnut',
-            data: { labels: ['Por requerimiento de clases', 'Por iniciativa propia'], datasets: [{ data: [67, 33], backgroundColor: [chartColors.light, chartColors.green], borderWidth: 0, hoverOffset: 10 }] },
-            options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } }, datalabels: { display: false } } }
-        });
+                // 2. Problema
+                setTxt('dyn-prob-p1', cms.problema?.p1);
+                setTxt('dyn-prob-p2', cms.problema?.p2);
+                setTxt('dyn-prob-q', cms.problema?.q);
 
-        // Q2 (Bar Horizontal Invertida)
-        new Chart(document.getElementById('chartQ2').getContext('2d'), {
-            type: 'bar',
-            data: { labels: ['> 4 Horas', '< 4 Horas'], datasets: [{ data: [17, 83], backgroundColor: [chartColors.navy, chartColors.light], borderRadius: 6 }] },
-            options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { align: 'right', anchor: 'end', color: chartColors.navy, formatter: (value) => value + '%' } }, scales: { x: { display: false, max: 100 }, y: { grid: { display: false }, border: {display: false} } } }
-        });
+                // 3. Objetivos
+                setTxt('dyn-obj-gen', cms.objetivos?.gen);
+                setTxt('dyn-obj-e1', cms.objetivos?.e1);
+                setTxt('dyn-obj-e2', cms.objetivos?.e2);
+                setTxt('dyn-obj-e3', cms.objetivos?.e3);
 
-        // Q3 (Gauge)
-        new Chart(document.getElementById('chartQ3').getContext('2d'), {
-            type: 'doughnut',
-            data: { labels: ['Mejora Vocabulario'], datasets: [{ data: [100], backgroundColor: [chartColors.green], borderWidth: 0 }] },
-            options: { responsive: true, maintainAspectRatio: false, cutout: '85%', rotation: -90, circumference: 180, plugins: { legend: { display: false }, datalabels: { display: false }, tooltip: { enabled: false } } }
-        });
+                // 4. Marco
+                setTxt('dyn-mar-p1', cms.marco?.p1);
+                setTxt('dyn-mar-p2', cms.marco?.p2);
+                setTxt('dyn-mar-p3', cms.marco?.p3);
+                setTxt('dyn-mar-p4', cms.marco?.p4);
 
-        // Q4 (Bar Vertical)
-        new Chart(document.getElementById('chartQ4').getContext('2d'), {
-            type: 'bar',
-            data: { labels: ['Casos Prácticos', 'Teoría General', 'Artículos'], datasets: [{ data: [57, 29, 14], backgroundColor: [chartColors.navy, chartColors.green, chartColors.accent], borderRadius: 8 }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: Object.assign({}, datalabelsConfig, {align: 'bottom', anchor: 'end', color: '#fff'}) }, scales: { y: { display: false, max: 70 }, x: { grid: { display: false }, border: {display: false} } } }
-        });
+                // 5. Metodología
+                setTxt('dyn-met-tipo', cms.metodologia?.tipo);
+                setTxt('dyn-met-pob', cms.metodologia?.pob);
+                setTxt('dyn-met-enf', cms.metodologia?.enf);
 
-        // Q5 (Pie)
-        new Chart(document.getElementById('chartQ5').getContext('2d'), {
-            type: 'pie',
-            data: { labels: ['Cumplir Tareas', 'Interés Global'], datasets: [{ data: [50, 50], backgroundColor: [chartColors.navy, chartColors.green], borderWidth: 4, borderColor: '#ffffff' }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } }, datalabels: datalabelsConfig } }
-        });
+                // 6. Gráficas (Q1-Q10)
+                for(let i=1; i<=10; i++) setTxt('text-q'+i, cms.graficas?.['q'+i]);
 
-        // Q6 (Polar Area)
-        new Chart(document.getElementById('chartQ6').getContext('2d'), {
-            type: 'polarArea',
-            data: { labels: ['Gestión Humana', 'Logística', 'Contabilidad', 'Marketing'], datasets: [{ data: [33, 33, 17, 17], backgroundColor: ['rgba(30, 41, 59, 0.8)', 'rgba(22, 101, 52, 0.8)', 'rgba(34, 197, 94, 0.8)', 'rgba(148, 163, 184, 0.8)'] }] },
-            options: { responsive: true, maintainAspectRatio: false, scales: { r: { display: false } }, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } }, datalabels: { display: false } } }
-        });
-
-        // Q7 (Bar Vertical)
-        new Chart(document.getElementById('chartQ7').getContext('2d'), {
-            type: 'bar',
-            data: { labels: ['Nivel 3', 'Nivel 4', 'Nivel 7'], datasets: [{ data: [1, 1, 3], backgroundColor: chartColors.green, borderRadius: 4 }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { align: 'end', anchor: 'end', color: chartColors.green, formatter: (value) => value + ' Resp' } }, scales: { y: { display: false, max: 4 }, x: { grid: { display: false }, border: {display: false} } } }
-        });
-
-        // Q8 (Doughnut)
-        new Chart(document.getElementById('chartQ8').getContext('2d'), {
-            type: 'doughnut',
-            data: { labels: ['Toma de Decisiones', 'Resolución de Problemas', 'Soporte Teórico'], datasets: [{ data: [45, 40, 15], backgroundColor: [chartColors.navy, chartColors.green, chartColors.accent], borderWidth: 0, hoverOffset: 5 }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 10 } }, datalabels: { display: false } } }
-        });
-
-        // Q9 (Barra Apilada/Simple)
-        new Chart(document.getElementById('chartQ9').getContext('2d'), {
-            type: 'bar',
-            data: { labels: ['Guía formativa', 'Aplicación en negocios'], datasets: [{ data: [60, 40], backgroundColor: [chartColors.green, chartColors.pastelG], borderRadius: 6 }] },
-            options: { indexAxis: 'x', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { align: 'end', anchor: 'end', color: chartColors.navy, formatter: (value) => value + '%' } }, scales: { y: { display: false, max: 80 }, x: { grid: { display: false } } } }
-        });
-
-        // Q10 (Horizontal Bar)
-        new Chart(document.getElementById('chartQ10').getContext('2d'), {
-            type: 'bar',
-            data: { labels: ['Tiempo y Cansancio', 'Textos Extensos'], datasets: [{ data: [80, 20], backgroundColor: chartColors.navy, borderRadius: 6 }] },
-            options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { align: 'start', anchor: 'end', color: '#ffffff', formatter: (value) => value + '%' } }, scales: { x: { display: false, max: 100 }, y: { grid: { display: false }, border: {display: false} } } }
-        });
-
-        // === CONEXIÓN CON PANEL DE ADMINISTRACIÓN CMS ===
-        document.addEventListener('DOMContentLoaded', () => {
-            const cmsData = JSON.parse(localStorage.getItem('uvg_cms_data'));
-            if (cmsData && cmsData.desglosado) {
-                for (let i = 1; i <= 10; i++) {
-                    const textEl = document.getElementById('text-q' + i);
-                    if (textEl && cmsData.desglosado['q' + i]) {
-                        textEl.innerText = cmsData.desglosado['q' + i];
-                    }
+                // 7. PNI
+                for(let i=1; i<=4; i++) {
+                    setTxt('dyn-pni-p'+i, cms.pni?.['p'+i]);
+                    setTxt('dyn-pni-n'+i, cms.pni?.['n'+i]);
+                    setTxt('dyn-pni-i'+i, cms.pni?.['i'+i]);
                 }
+
+                // 8. Referencias
+                for(let i=1; i<=5; i++) setTxt('dyn-ref'+i, cms.referencias?.['r'+i]);
             }
         });
+
+        // Configuración ChartJS Omitida por brevedad visual, pero se insertan las gráficas igual
+        Chart.register(ChartDataLabels); Chart.defaults.font.family = "'Inter', sans-serif"; Chart.defaults.color = '#64748b';
+        Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(30, 41, 59, 0.9)'; Chart.defaults.plugins.tooltip.padding = 12;
+        const dlConfig = { color: '#ffffff', font: { weight: 'bold', size: 14 }, formatter: (v) => v + '%' };
+
+        new Chart(document.getElementById('chartQ1').getContext('2d'), { type: 'doughnut', data: { labels: ['Por clases', 'Iniciativa propia'], datasets: [{ data: [67, 33], backgroundColor: [chartColors.light, chartColors.green], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { datalabels: { display: false } } }});
+        new Chart(document.getElementById('chartQ2').getContext('2d'), { type: 'bar', data: { labels: ['> 4 Horas', '< 4 Horas'], datasets: [{ data: [17, 83], backgroundColor: [chartColors.navy, chartColors.light] }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { datalabels: { align: 'right', anchor: 'end', color: chartColors.navy, formatter: v=>v+'%' } }, scales: { x: { display: false, max: 100 }, y: { grid: { display: false } } } }});
+        new Chart(document.getElementById('chartQ3').getContext('2d'), { type: 'doughnut', data: { labels: ['Mejora Vocabulario'], datasets: [{ data: [100], backgroundColor: [chartColors.green], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '85%', rotation: -90, circumference: 180, plugins: { datalabels: { display: false } } }});
+        new Chart(document.getElementById('chartQ4').getContext('2d'), { type: 'bar', data: { labels: ['Casos Prácticos', 'Teoría General', 'Artículos'], datasets: [{ data: [57, 29, 14], backgroundColor: [chartColors.navy, chartColors.green, chartColors.accent] }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { datalabels: {align: 'bottom', anchor: 'end', color: '#fff', formatter: v=>v+'%'} }, scales: { y: { display: false, max: 70 }, x: { grid: { display: false } } } }});
+        new Chart(document.getElementById('chartQ5').getContext('2d'), { type: 'pie', data: { labels: ['Cumplir Tareas', 'Interés Global'], datasets: [{ data: [50, 50], backgroundColor: [chartColors.navy, chartColors.green] }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { datalabels: dlConfig } }});
+        new Chart(document.getElementById('chartQ6').getContext('2d'), { type: 'polarArea', data: { labels: ['Gestión Humana', 'Logística', 'Contabilidad', 'Marketing'], datasets: [{ data: [33, 33, 17, 17], backgroundColor: ['rgba(30, 41, 59, 0.8)', 'rgba(22, 101, 52, 0.8)', 'rgba(34, 197, 94, 0.8)', 'rgba(148, 163, 184, 0.8)'] }] }, options: { responsive: true, maintainAspectRatio: false, scales: { r: { display: false } }, plugins: { datalabels: { display: false } } }});
+        new Chart(document.getElementById('chartQ7').getContext('2d'), { type: 'bar', data: { labels: ['Nivel 3', 'Nivel 4', 'Nivel 7'], datasets: [{ data: [1, 1, 3], backgroundColor: chartColors.green }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { datalabels: { align: 'end', anchor: 'end', color: chartColors.green, formatter: v=>v+' Resp' } }, scales: { y: { display: false, max: 4 }, x: { grid: { display: false } } } }});
+        new Chart(document.getElementById('chartQ8').getContext('2d'), { type: 'doughnut', data: { labels: ['Decisiones', 'Problemas', 'Teoría'], datasets: [{ data: [45, 40, 15], backgroundColor: [chartColors.navy, chartColors.green, chartColors.accent] }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { datalabels: { display: false } } }});
+        new Chart(document.getElementById('chartQ9').getContext('2d'), { type: 'bar', data: { labels: ['Guía formativa', 'Aplicación en negocios'], datasets: [{ data: [60, 40], backgroundColor: [chartColors.green, chartColors.pastelG] }] }, options: { indexAxis: 'x', responsive: true, maintainAspectRatio: false, plugins: { datalabels: { align: 'end', anchor: 'end', color: chartColors.navy, formatter: v=>v+'%' } }, scales: { y: { display: false, max: 80 }, x: { grid: { display: false } } } }});
+        new Chart(document.getElementById('chartQ10').getContext('2d'), { type: 'bar', data: { labels: ['Tiempo y Cansancio', 'Textos Extensos'], datasets: [{ data: [80, 20], backgroundColor: chartColors.navy }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { datalabels: { align: 'start', anchor: 'end', color: '#ffffff', formatter: v=>v+'%' } }, scales: { x: { display: false, max: 100 }, y: { grid: { display: false } } } }});
     </script>
 </body>
 </html>
