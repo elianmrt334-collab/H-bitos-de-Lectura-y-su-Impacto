@@ -3,280 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración UVG</title>
-    <!-- Tailwind CSS -->
+    <title>CMS - UVG</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        uvg: {
-                            green: '#166534',
-                            navy: '#1e293b',
-                            light: '#f0fdf4',
-                            accent: '#22c55e'
-                        }
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { uvg: { green: '#166534', navy: '#1e293b', accent: '#22c55e' } } } } }
     </script>
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
-        h1, h2, h3, h4, .font-outfit { font-family: 'Outfit', sans-serif; }
-        .glass-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .font-outfit { font-family: 'Outfit', sans-serif; }
+        .glass-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
         .hidden-section { display: none; }
+        
+        /* Estilo para los acordeones nativos */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- ==========================================
-         SECCIÓN 1: LOGIN
-         ========================================== -->
+    <!-- LOGIN -->
     <div id="login-section" class="flex-grow flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl p-8 max-w-md w-full border-t-8 border-uvg-green relative overflow-hidden">
-            <!-- Decoración de fondo -->
-            <i class="fa-solid fa-lock absolute -right-6 -top-6 text-[120px] text-slate-50 opacity-50 pointer-events-none"></i>
-            
-            <div class="relative z-10">
-                <div class="text-center mb-8">
-                    <!-- Logo UVG Mini -->
-                    <div class="inline-flex flex-col items-center justify-center border-4 border-uvg-navy px-3 py-1 mb-4">
-                        <span class="text-uvg-green font-black text-2xl leading-none">UVG</span>
-                        <div class="w-full h-[2px] bg-uvg-green my-1"></div>
-                    </div>
-                    <h1 class="text-2xl font-bold text-uvg-navy font-outfit">Acceso Restringido</h1>
-                    <p class="text-sm text-slate-500 mt-2">Panel de edición del Reporte de Investigación</p>
-                </div>
-
-                <form id="login-form" class="space-y-5">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1"><i class="fa-solid fa-user text-uvg-green mr-1"></i> Usuario</label>
-                        <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-uvg-accent focus:border-transparent transition" placeholder="Ej. elian" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1"><i class="fa-solid fa-key text-uvg-green mr-1"></i> Contraseña</label>
-                        <input type="password" id="password" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-uvg-accent focus:border-transparent transition" placeholder="••••••••" required>
-                    </div>
-                    
-                    <div id="login-error" class="text-red-500 text-sm text-center hidden font-medium bg-red-50 py-2 rounded-lg border border-red-100">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Usuario o contraseña incorrectos.
-                    </div>
-
-                    <button type="submit" class="w-full bg-uvg-navy hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex justify-center items-center gap-2">
-                        Ingresar al Panel <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </form>
-
-                <div class="mt-6 text-center">
-                    <a href="index.html" class="text-sm text-slate-500 hover:text-uvg-green transition"><i class="fa-solid fa-arrow-left"></i> Volver al documento</a>
-                </div>
+        <div class="glass-card rounded-2xl p-8 max-w-md w-full border-t-8 border-uvg-green relative">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-bold text-uvg-navy font-outfit">Acceso Total CMS</h1>
+                <p class="text-sm text-slate-500 mt-2">Edita todos los textos del proyecto</p>
             </div>
+            <form id="login-form" class="space-y-5">
+                <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-uvg-accent" placeholder="Usuario (Ej. elian)" required>
+                <input type="password" id="password" class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-uvg-accent" placeholder="Contraseña (uvg2026)" required>
+                <div id="login-error" class="text-red-500 text-sm text-center hidden bg-red-50 py-2 rounded-lg">Usuario o contraseña incorrectos.</div>
+                <button type="submit" class="w-full bg-uvg-navy hover:bg-slate-800 text-white font-bold py-3 rounded-lg">Ingresar <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
         </div>
     </div>
 
-    <!-- ==========================================
-         SECCIÓN 2: PANEL DE ADMINISTRACIÓN (CMS)
-         ========================================== -->
+    <!-- PANEL CMS -->
     <div id="admin-section" class="hidden-section flex-col min-h-screen">
-        
-        <!-- Navbar Admin -->
         <header class="bg-uvg-navy text-white shadow-lg sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="bg-white text-uvg-navy w-8 h-8 rounded flex items-center justify-center font-bold">UVG</div>
-                    <h1 class="text-lg font-bold font-outfit hidden sm:block">CMS - Bienvenido(a), <span id="current-user" class="text-uvg-accent">Admin</span></h1>
-                </div>
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <h1 class="text-lg font-bold font-outfit">Panel UVG - <span id="current-user" class="text-uvg-accent">Admin</span></h1>
                 <div class="flex gap-3">
-                    <a href="index.html" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
-                        <i class="fa-solid fa-eye"></i> <span class="hidden sm:inline">Ver Dashboard</span>
-                    </a>
-                    <button onclick="logout()" class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-lg text-sm shadow transition flex items-center gap-2">
-                        <i class="fa-solid fa-power-off"></i> <span class="hidden sm:inline">Cerrar Sesión</span>
-                    </button>
+                    <button onclick="saveAllData()" class="bg-uvg-green px-4 py-2 rounded-lg text-sm shadow"><i class="fa-solid fa-save"></i> Guardar Todo</button>
+                    <a href="index.html" class="bg-white/10 px-4 py-2 rounded-lg text-sm"><i class="fa-solid fa-eye"></i> Dashboard</a>
+                    <button onclick="logout()" class="bg-rose-500 px-4 py-2 rounded-lg text-sm"><i class="fa-solid fa-power-off"></i></button>
                 </div>
             </div>
         </header>
 
-        <!-- Contenido Editor -->
-        <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full">
-            
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 rounded-r-lg shadow-sm">
-                <div class="flex items-start">
-                    <i class="fa-solid fa-circle-info text-blue-500 mt-1 mr-3 text-lg"></i>
-                    <div>
-                        <h3 class="font-bold text-blue-800 text-sm">Editor de Textos Dinámicos</h3>
-                        <p class="text-blue-600 text-xs mt-1">Los cambios que guardes aquí se reflejarán automáticamente en el Dashboard principal de las gráficas.</p>
-                    </div>
-                </div>
+        <main class="flex-grow max-w-4xl mx-auto px-4 py-8 w-full">
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg text-sm text-blue-800">
+                <i class="fa-solid fa-circle-info"></i> Abre las pestañas para editar cada sección de tu presentación. No olvides guardar.
             </div>
 
-            <div class="glass-card rounded-2xl p-6 sm:p-8">
-                <div class="flex items-center justify-between mb-6 border-b border-slate-200 pb-4">
-                    <h2 class="text-2xl font-bold text-uvg-navy font-outfit">Interpretaciones de Gráficas</h2>
-                    <button onclick="saveData()" class="bg-uvg-green hover:bg-uvg-accent text-white px-6 py-2 rounded-lg font-bold shadow-md transition flex items-center gap-2">
-                        <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios
-                    </button>
-                </div>
+            <!-- ACORDEONES GENERADOS POR JS -->
+            <div id="cms-forms" class="space-y-4"></div>
 
-                <div id="editor-container" class="space-y-8">
-                    <!-- Los textareas se generarán por JavaScript -->
-                </div>
-
-                <div class="mt-8 border-t border-slate-200 pt-6 text-right">
-                    <button onclick="saveData()" class="bg-uvg-green hover:bg-uvg-accent text-white px-8 py-3 rounded-lg font-bold shadow-lg transition text-lg inline-flex items-center gap-2">
-                        <i class="fa-solid fa-floppy-disk"></i> Guardar Todo
-                    </button>
-                </div>
-            </div>
-            
         </main>
-        
-        <footer class="bg-slate-800 text-slate-400 text-center py-4 text-xs">
-            Sistema CMS Local - Universidad del Valle de Guatemala
-        </footer>
     </div>
 
-    <!-- Toast de Notificación -->
-    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 bg-uvg-navy text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 z-50">
-        <i class="fa-solid fa-circle-check text-uvg-accent text-xl"></i>
-        <div>
-            <h4 class="font-bold text-sm">Guardado Exitoso</h4>
-            <p class="text-xs text-slate-300">Los textos han sido actualizados.</p>
-        </div>
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all bg-uvg-navy text-white px-6 py-3 rounded-xl z-50">
+        <i class="fa-solid fa-check text-uvg-accent"></i> Cambios guardados
     </div>
 
     <script>
-        // === Textos por defecto en caso de no haber datos guardados ===
-        const defaultTexts = {
-            q1: "El objetivo es evaluar la presencia del hábito de lectura por iniciativa propia, lo que permite explorar si la lectura se asume como una actividad voluntaria, aportando información sobre el desarrollo de hábitos culturales y formativos.",
-            q2: "Tiene como finalidad reconocer si los estudiantes invierten tiempo extra fuera de lo obligatorio para reforzar su formación académica.",
-            q3: "La pregunta evalúa si los participantes reconocen una mejora en su comprensión y uso de términos técnicos como resultado de las lecturas realizadas.",
-            q4: "Su propósito es identificar qué fuentes de información favorecen mejor al proceso de aprendizaje y asimilación de contenido.",
-            q5: "Permite analizar factores internos y externos que afectan el hábito lector de los estudiantes y que además condicionan la frecuencia y el interés por la lectura.",
-            q6: "Permite analizar la relación entre el hábito lector y la mejora de calificaciones en distintas áreas de formación administrativa.",
-            q7: "Evidencia el nivel de demanda que enfrentan los estudiantes y cómo los docentes otorgan importancia a la lectura como herramienta de aprendizaje.",
-            q8: "Propósito: comprender cómo los estudiantes vinculan la lectura con su desempeño en la interpretación, análisis y resolución de problemas complejos.",
-            q9: "Analiza cómo las lecturas influyen en el pensamiento crítico y en la capacidad para reflexionar y tomar una postura frente a los dilemas éticos empresariales.",
-            q10: "Identifica los factores principales que limitan o bloquean el desarrollo de hábitos de lectura especializada en el ámbito universitario."
+        // ESTRUCTURA POR DEFECTO CON TODOS LOS TEXTOS ACTUALES
+        const defaultData = {
+            global: {
+                mainTitle: "Hábitos de Lectura y su Impacto", subTitle: "Facultad de Administración de Negocios",
+                coverSup: "Campus Altiplano • Técnico en Administración de Empresas",
+                int1: "Kristel Nalleli Pascual España", int2: "Elián Antonio Martínez Jácome", int3: "Christian José Cortéz Bolla",
+                prof: "Lic. José Antonio López Rodríguez", year: "Ciclo Académico 2026"
+            },
+            problema: {
+                p1: "En la sociedad actual, se observa una pérdida progresiva del interés por la lectura, la cual ha sido reemplazada en gran medida por el consumo digital. La falta de hábitos lectores sólidos desde etapas formativas contribuye al abandono de textos académicos y literarios esenciales, creando una barrera en el desarrollo educativo y cognitivo.",
+                p2: "Las principales consecuencias incluyen el deterioro de la concentración, la reducción de la capacidad de análisis crítico y limitaciones en la comprensión lectora, afectando a la población general y estudiantil de forma severa.",
+                q: "¿Qué factores, además de la tecnología, influyen en el bajo hábito de lectura actual y de qué manera afectan la capacidad de comprensión lectora en los estudiantes?"
+            },
+            objetivos: {
+                gen: "Analizar las causas del bajo hábito de lectura en los estudiantes de primer año de la carrera de Técnico en Administración de Empresas de la UVG, para identificar su capacidad analítica y promover acciones que fomenten el interés por la lectura a lo largo del ciclo académico.",
+                e1: "Determinar el nivel de comprensión lectora y el tiempo semanal que los estudiantes dedican a textos académicos.",
+                e2: "Diseñar una estrategia de contenidos y casos reales que conecten la lectura con la práctica administrativa.",
+                e3: "Identificar las barreras principales (falta de tiempo, distractores) que impiden el desarrollo lector."
+            },
+            marco: {
+                p1: "Para comprender la carencia del hábito lector, es indispensable revisar cómo el desinterés afecta a los estudiantes que ingresan a la educación superior. Muchos conciben la lectura únicamente como una obligación para aprobar evaluaciones, dificultando su adaptación al rigor universitario (Carlino, 2005). Las deficiencias arrastradas desde la educación media se trasladan a la universidad, impidiendo asimilar textos académicos complejos e innovar frente a problemas profesionales reales (García, 2018).",
+                p2: "Superar esta barrera requiere desarrollar la comprensión lectora, un proceso cognitivo de alta complejidad. No se trata de repetir de memoria, sino de la capacidad humana fundamental para interpretar, cuestionar y reflexionar activamente sobre las ideas de un autor (Solé, 2012).",
+                p3: "Sin embargo, esta autonomía está fuertemente amenazada. Los estudiantes actuales reciben estímulos visuales rápidos, una inmediatez que reduce notablemente su capacidad neurológica para mantener atención sostenida frente a textos de mayor longitud (Wolf, 2018).",
+                p4: "La cultura del scrolling debilita la capacidad analítica y genera una falsa ilusión de conocimiento. Frente a esto, la presente investigación busca conectar estos fundamentos teóricos con la realidad de los estudiantes de la UVG, diagnosticando su nivel para plantear soluciones estratégicas."
+            },
+            metodologia: {
+                tipo: "Investigación de carácter exploratoria. Se emplearon técnicas de encuesta y observación directa para el levantamiento de información primaria.",
+                pob: "Enfocado en la comunidad estudiantil, específicamente centrado en los estudiantes de la UVG (Técnico en Administración de Empresas).",
+                enf: "Identificar problemas de pérdida de interés lector para proponer soluciones que mejoren la concentración y el nivel de análisis a largo plazo."
+            },
+            graficas: {
+                q1: "El objetivo es evaluar la presencia del hábito de lectura por iniciativa propia, lo que permite explorar si la lectura se asume como una actividad voluntaria, aportando información sobre el desarrollo de hábitos culturales y formativos.",
+                q2: "Tiene como finalidad reconocer si los estudiantes invierten tiempo extra fuera de lo obligatorio para reforzar su formación académica.",
+                q3: "La pregunta evalúa si los participantes reconocen una mejora en su comprensión y uso de términos técnicos como resultado de las lecturas realizadas.",
+                q4: "Su propósito es identificar qué fuentes de información favorecen mejor al proceso de aprendizaje y asimilación de contenido.",
+                q5: "Permite analizar factores internos y externos que afectan el hábito lector de los estudiantes y que además condicionan la frecuencia y el interés por la lectura.",
+                q6: "Permite analizar la relación entre el hábito lector y la mejora de calificaciones en distintas áreas de formación administrativa.",
+                q7: "Evidencia el nivel de demanda que enfrentan los estudiantes y cómo los docentes otorgan importancia a la lectura como herramienta de aprendizaje.",
+                q8: "Propósito: comprender cómo los estudiantes vinculan la lectura con su desempeño en la interpretación, análisis y resolución de problemas complejos.",
+                q9: "Analiza cómo las lecturas influyen en el pensamiento crítico y en la capacidad para reflexionar y tomar una postura frente a los dilemas éticos empresariales.",
+                q10: "Identifica los factores principales que limitan o bloquean el desarrollo de hábitos de lectura especializada en el ámbito universitario."
+            },
+            pni: {
+                p1: "Buena estructura de la información e investigación.", n1: "Para las personas que empiezan a usar este método puede ser frustrante y rígido.", i1: "Utilización de materiales visuales, que ayudan a una mejor interpretación.",
+                p2: "Diferentes métodos y pasos claros que ayudan a la investigación.", n2: "Si se utilizan diferentes etapas o todos los pasos, el proceso puede hacerse más largo y complejo.", i2: "Es posible dar conclusiones en torno a las hipótesis planteadas; la info visual es vital.",
+                p3: "Se pueden tomar ideas de información de diferentes fuentes académicas.", n3: "Las fuentes interpretativas pueden contener información distorsionada, afectando la confiabilidad.", i3: "Las herramientas procesan datos pero no sustituyen el análisis crítico del investigador.",
+                p4: "Se usan métodos y se concluye con la verificación.", n4: "Usar diferentes métodos al ponerlo en práctica puede ser complicado al inicio.", i4: "De manera adecuada se pueden utilizar diferentes métodos dependiendo de las necesidades."
+            },
+            referencias: {
+                r1: "Carlino, P. (2005). Escribir, leer y aprender en la universidad...",
+                r2: "Carr, N. (2011). Superficiales: ¿Qué está haciendo Internet con nuestras mentes?",
+                r3: "García, L. (2018). El desafío de la comprensión lectora en universitarios centroamericanos.",
+                r4: "Solé, I. (2012). Competencia lectora y aprendizaje en la educación superior.",
+                r5: "Wolf, M. (2018). Lector, vuelve a casa: Cómo afecta a nuestro cerebro la lectura en pantallas."
+            }
         };
 
-        const titles = [
-            "Gráfica 01: Frecuencia de lectura por interés propio",
-            "Gráfica 02: ¿Dedicación mayor a 4 horas extra?",
-            "Gráfica 03: Mejora en Vocabulario Técnico",
-            "Gráfica 04: Material de Mayor Retención",
-            "Gráfica 05: Factores que condicionan la lectura",
-            "Gráfica 06: Áreas de impacto en notas",
-            "Gráfica 07: Intensidad de Exigencia (1-10)",
-            "Gráfica 08: Capacidad en Simuladores",
-            "Gráfica 09: Postura y Criterio Ético",
-            "Gráfica 10: Obstáculos en la rutina"
+        // Esquema para construir los formularios dinámicamente
+        const formSchema = [
+            { id: 'global', icon: 'fa-user-pen', title: '1. Textos Globales y Portada', fields: [
+                { key: 'mainTitle', label: 'Título Principal', type: 'input' }, { key: 'subTitle', label: 'Subtítulo (Header)', type: 'input' },
+                { key: 'coverSup', label: 'Texto Superior (Portada)', type: 'input' },
+                { key: 'int1', label: 'Integrante 1', type: 'input' }, { key: 'int2', label: 'Integrante 2', type: 'input' }, { key: 'int3', label: 'Integrante 3', type: 'input' },
+                { key: 'prof', label: 'Catedrático', type: 'input' }, { key: 'year', label: 'Ciclo / Año', type: 'input' }
+            ]},
+            { id: 'problema', icon: 'fa-magnifying-glass', title: '2. Problema de Investigación', fields: [
+                { key: 'p1', label: 'Párrafo 1', type: 'textarea' }, { key: 'p2', label: 'Párrafo 2', type: 'textarea' }, { key: 'q', label: 'Pregunta Central', type: 'textarea' }
+            ]},
+            { id: 'objetivos', icon: 'fa-bullseye', title: '3. Objetivos', fields: [
+                { key: 'gen', label: 'Objetivo General', type: 'textarea' },
+                { key: 'e1', label: 'Específico 1', type: 'textarea' }, { key: 'e2', label: 'Específico 2', type: 'textarea' }, { key: 'e3', label: 'Específico 3', type: 'textarea' }
+            ]},
+            { id: 'marco', icon: 'fa-book-open', title: '4. Marco Teórico', fields: [
+                { key: 'p1', label: 'Párrafo 1', type: 'textarea' }, { key: 'p2', label: 'Párrafo 2', type: 'textarea' },
+                { key: 'p3', label: 'Párrafo 3', type: 'textarea' }, { key: 'p4', label: 'Párrafo 4', type: 'textarea' }
+            ]},
+            { id: 'metodologia', icon: 'fa-flask', title: '5. Metodología', fields: [
+                { key: 'tipo', label: 'Tipo y Técnica', type: 'textarea' }, { key: 'pob', label: 'Población', type: 'textarea' }, { key: 'enf', label: 'Enfoque', type: 'textarea' }
+            ]},
+            { id: 'graficas', icon: 'fa-chart-pie', title: '6. Interpretaciones de Gráficas (1-10)', fields: Array.from({length: 10}, (_, i) => ({ key: 'q'+(i+1), label: 'Gráfica '+(i+1), type: 'textarea' })) },
+            { id: 'pni', icon: 'fa-table-columns', title: '7. Matriz PNI', fields: [
+                { key: 'p1', label: 'Positivo 1', type: 'input' }, { key: 'n1', label: 'Negativo 1', type: 'input' }, { key: 'i1', label: 'Interesante 1', type: 'input' },
+                { key: 'p2', label: 'Positivo 2', type: 'input' }, { key: 'n2', label: 'Negativo 2', type: 'input' }, { key: 'i2', label: 'Interesante 2', type: 'input' },
+                { key: 'p3', label: 'Positivo 3', type: 'input' }, { key: 'n3', label: 'Negativo 3', type: 'input' }, { key: 'i3', label: 'Interesante 3', type: 'input' },
+                { key: 'p4', label: 'Positivo 4', type: 'input' }, { key: 'n4', label: 'Negativo 4', type: 'input' }, { key: 'i4', label: 'Interesante 4', type: 'input' }
+            ]},
+            { id: 'referencias', icon: 'fa-quote-right', title: '8. Referencias', fields: Array.from({length: 5}, (_, i) => ({ key: 'r'+(i+1), label: 'Referencia '+(i+1), type: 'input' })) }
         ];
 
-        // === Lógica de Login ===
-        document.getElementById('login-form').addEventListener('submit', function(e) {
+        // LÓGICA DE LOGIN
+        document.getElementById('login-form').addEventListener('submit', e => {
             e.preventDefault();
             const user = document.getElementById('username').value.trim().toLowerCase();
             const pass = document.getElementById('password').value;
-            
-            // Credenciales para los integrantes del grupo
-            if((user === 'elian' || user === 'kristel' || user === 'christian') && pass === 'uvg2026') {
+            if(['elian','kristel','christian','admin'].includes(user) && pass === 'uvg2026') {
                 sessionStorage.setItem('uvg_logged_in', 'true');
                 sessionStorage.setItem('uvg_active_user', user.charAt(0).toUpperCase() + user.slice(1));
-                showAdminPanel();
+                initCMS();
             } else {
-                const errorDiv = document.getElementById('login-error');
-                errorDiv.classList.remove('hidden');
-                setTimeout(() => errorDiv.classList.add('hidden'), 3000);
+                document.getElementById('login-error').classList.remove('hidden');
             }
         });
 
         function logout() {
-            sessionStorage.removeItem('uvg_logged_in');
-            sessionStorage.removeItem('uvg_active_user');
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('admin-section').classList.add('hidden-section');
-            document.getElementById('admin-section').classList.remove('flex');
-            document.getElementById('login-section').classList.remove('hidden-section');
-            document.getElementById('login-section').classList.add('flex');
+            sessionStorage.clear();
+            location.reload();
         }
 
-        // === Inicializar Editor ===
-        function showAdminPanel() {
-            document.getElementById('login-section').classList.add('hidden-section');
-            document.getElementById('login-section').classList.remove('flex');
-            document.getElementById('admin-section').classList.remove('hidden-section');
-            document.getElementById('admin-section').classList.add('flex');
+        // INICIALIZACIÓN DEL CMS
+        function initCMS() {
+            document.getElementById('login-section').classList.replace('flex', 'hidden-section');
+            document.getElementById('admin-section').classList.replace('hidden-section', 'flex');
+            document.getElementById('current-user').innerText = sessionStorage.getItem('uvg_active_user');
             
-            const activeUser = sessionStorage.getItem('uvg_active_user') || 'Admin';
-            document.getElementById('current-user').innerText = activeUser;
+            // Cargar datos actuales
+            let currentData = JSON.parse(localStorage.getItem('uvg_cms_data')) || defaultData;
+            const container = document.getElementById('cms-forms');
             
-            loadEditorFields();
-        }
+            formSchema.forEach(section => {
+                let fieldsHtml = '';
+                section.fields.forEach(f => {
+                    const val = currentData[section.id]?.[f.key] || defaultData[section.id][f.key] || "";
+                    if(f.type === 'input') {
+                        fieldsHtml += `<div class="mb-3"><label class="text-xs font-bold text-slate-500 uppercase">${f.label}</label><input type="text" id="${section.id}-${f.key}" value="${val}" class="w-full border p-2 rounded focus:ring-2 focus:ring-uvg-green text-sm"></div>`;
+                    } else {
+                        fieldsHtml += `<div class="mb-3"><label class="text-xs font-bold text-slate-500 uppercase">${f.label}</label><textarea id="${section.id}-${f.key}" rows="3" class="w-full border p-2 rounded focus:ring-2 focus:ring-uvg-green text-sm">${val}</textarea></div>`;
+                    }
+                });
 
-        function loadEditorFields() {
-            const container = document.getElementById('editor-container');
-            container.innerHTML = ''; // Limpiar
-            
-            // Obtener datos guardados o usar default
-            let savedData = JSON.parse(localStorage.getItem('uvg_cms_data'));
-            if (!savedData || !savedData.desglosado) {
-                savedData = { desglosado: defaultTexts };
-            }
-
-            // Generar los 10 textareas
-            for(let i = 1; i <= 10; i++) {
-                const key = 'q' + i;
-                const valorActual = savedData.desglosado[key] || defaultTexts[key] || "";
-                
-                const html = `
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-uvg-green/50 transition">
-                        <label class="block text-sm font-bold text-uvg-navy mb-2">
-                            <span class="bg-uvg-navy text-white px-2 py-1 rounded text-xs mr-2">Q${i}</span> 
-                            ${titles[i-1]}
-                        </label>
-                        <textarea id="edit-q${i}" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-uvg-accent focus:border-transparent text-slate-600 text-sm resize-y leading-relaxed">${valorActual}</textarea>
-                    </div>
+                container.innerHTML += `
+                    <details class="glass-card rounded-xl group overflow-hidden">
+                        <summary class="p-5 font-bold text-uvg-navy cursor-pointer hover:bg-slate-50 flex items-center justify-between">
+                            <span><i class="fa-solid ${section.icon} text-uvg-green mr-2"></i> ${section.title}</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="p-5 bg-slate-50 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${fieldsHtml}
+                        </div>
+                    </details>
                 `;
-                container.innerHTML += html;
-            }
+            });
         }
 
-        // === Guardar Datos ===
-        function saveData() {
-            const newData = { desglosado: {} };
-            for(let i = 1; i <= 10; i++) {
-                const textarea = document.getElementById('edit-q' + i);
-                if(textarea) {
-                    newData.desglosado['q' + i] = textarea.value;
-                }
-            }
-            
-            // Guardar en almacenamiento del navegador
+        // GUARDADO MASIVO
+        function saveAllData() {
+            let newData = {};
+            formSchema.forEach(section => {
+                newData[section.id] = {};
+                section.fields.forEach(f => {
+                    const el = document.getElementById(`${section.id}-${f.key}`);
+                    if(el) newData[section.id][f.key] = el.value;
+                });
+            });
             localStorage.setItem('uvg_cms_data', JSON.stringify(newData));
             
-            // Mostrar notificación Toast
             const toast = document.getElementById('toast');
             toast.classList.remove('translate-y-20', 'opacity-0');
-            
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
         }
 
-        // === Verificar sesión activa al cargar la página ===
-        window.onload = function() {
-            if(sessionStorage.getItem('uvg_logged_in') === 'true') {
-                showAdminPanel();
-            }
-        };
+        window.onload = () => { if(sessionStorage.getItem('uvg_logged_in')) initCMS(); };
     </script>
 </body>
 </html>
